@@ -28,21 +28,14 @@ def index(request):
             'daily_forecasts2': daily_forecasts2,
         }
 
-            # store the context in the session
         request.session['context'] = context
-
-            # redirect to the same view using GET method
         return redirect('index')
-
-        # get the context from the session
+        
         context = request.session.get('context', {})
-
-        # clear the session
         request.session.clear()
 
         return render(request, 'index.html', context)
-
-
+        
     return render(request, 'index.html')
 
 def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_url):
